@@ -1,0 +1,58 @@
+<mat-card class="col-md-10"
+  style="margin:auto; margin-top: 2rem;padding:2rem; box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;">
+
+  <h2 style="color:#673ab7"> Generate a Form JSON</h2>
+  <form [formGroup]="formForm">
+
+    <mat-form-field class="example-form-field">
+      <mat-label for="first-name">Form Name: </mat-label>
+      <input matInput id="first-name" type="text" formControlName="name">
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Enter the associated Record Name</mat-label>
+      <input type="text" placeholder="Pick one" aria-label="Number" matInput formControlName="recordName"
+        [matAutocomplete]="auto" (input)="valueChangeDetector($event)">
+      <mat-autocomplete (optionSelected)="onOptionSelected($event)" autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option *ngFor="let record of filteredOptions | async" [value]="record">
+          {{record}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <div>
+      <mat-label> What operations do you need?</mat-label>
+      <mat-checkbox (change)="operationChanged($event,'create')">create</mat-checkbox>
+      <mat-checkbox (change)="operationChanged($event,'filter')">filter</mat-checkbox>
+    </div>
+    <mat-checkbox formControlName="serveGuests">Do you want to serve guests?</mat-checkbox>
+
+    <button mat-raised-button color="primary" (click)="addField()">Add Field</button>
+
+    <div formArrayName="controls">
+      <div *ngFor="let controlForm of controls.controls; let i = index" style="margin:0.5rem;border: 2px solid #673ab7">
+        <div [formGroupName]="i">
+
+          <mat-form-field appearance="fill">
+            <input matInput formControlName="name" placeholder="Field Name">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <input matInput formControlName="label" placeholder="Label to display">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>What Type of a field is this?</mat-label>
+            <mat-select formControlName="controlType">
+              <mat-option *ngFor="let controlType of controlTypes" [value]=controlType.name>
+                {{ controlType.displayName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-raised-button color="warn" (click)="deleteField(i)">Remove Field</button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <button class="col-md-3" style="margin:auto" mat-raised-button color="primary" (click)="generateJsonFile()">Generate
+    Record JSON</button>
+</mat-card>
