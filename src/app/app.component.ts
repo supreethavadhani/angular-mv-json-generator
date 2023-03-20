@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { FileService } from './services/fileService/file-service.service';
 import { JsonParserService } from './services/jsonParserService/jsonParser.service';
-import { FORM_EXT, RECORD_EXT } from './interfaces';
+import { FORM_EXT, PAGE_EXT, RECORD_EXT, TEMPLATE_EXT } from './interfaces';
 import { recordNames } from './data/formData';
 
 @Component({
@@ -15,6 +15,8 @@ export class AppComponent {
   resourceLocation = new FormControl('',Validators.required);
   formFileContent:any[] = []
   recordFileContent:any = []
+  templateFileContent:any = []
+  pageFileContent:any = []
   constructor(private jsonParserService : JsonParserService){}
   
   onFileSelected(event:any): void {
@@ -31,6 +33,10 @@ export class AppComponent {
       this.formFileContent.push(reader.result)
       if(file.name.endsWith(RECORD_EXT))
       this.recordFileContent.push(reader.result)
+      if(file.name.endsWith(TEMPLATE_EXT))
+      this.templateFileContent.push(reader.result)
+      if(file.name.endsWith(PAGE_EXT))
+      this.templateFileContent.push(reader.result)
     };
     reader.readAsText(file);
   }
@@ -38,6 +44,8 @@ export class AppComponent {
   getFiles(){
     this.jsonParserService.processFormData(this.formFileContent);
     this.jsonParserService.processRecordData(this.recordFileContent);
+    this.jsonParserService.processTemplateData(this.templateFileContent)
+    this.jsonParserService.processPageData(this.pageFileContent);
   }
 
 }

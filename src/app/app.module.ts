@@ -14,13 +14,17 @@ import { JsonParserService } from './services/jsonParserService/jsonParser.servi
 import { MatSelectModule } from '@angular/material/select';
 import { RecordGeneratorComponent } from './record-generator/record-generator.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatAutocompleteModule } from '@angular/material/autocomplete'
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { TemplateGeneratorComponent } from './template-generator/template-generator.component';
+import { PageGeneratorComponent } from './page-generator/page-generator.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     FormGeneratorComponent,
-    RecordGeneratorComponent
+    RecordGeneratorComponent,
+    TemplateGeneratorComponent,
+    PageGeneratorComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { formNames, formObjects, recordNames, recordObjects } from '../../data/formData';
-import { FormObject, RecordObject  } from '../../interfaces';
+import { formNames, formObjects, pageNames, pageObjects, recordNames, recordObjects, templateNames, templateObjects } from '../../data/formData';
+import { FormObject, PageObject, RecordObject, TemplateObject  } from '../../interfaces';
 
 
 @Injectable()
@@ -22,6 +22,25 @@ export class JsonParserService {
       let recordObj: RecordObject = this.getJsonObject(record);
       recordNames.push(recordObj.name);
       recordObjects.push(recordObj);
+    });
+  }
+
+  processTemplateData(templates:any[]) {
+    templateObjects.length = 0;
+    templates.forEach(template => {
+      let templateObj: TemplateObject = this.getJsonObject(template);
+      console.log(templateObj)
+      templateNames.push(templateObj.templateName);
+      templateObjects.push(templateObj);
+    });
+  }
+
+  processPageData(pages:any[]) {
+    pageObjects.length = 0;
+    pages.forEach(page => {
+      let pageObj: PageObject = this.getJsonObject(page);
+      pageNames.push(pageObj.pageName);
+      pageObjects.push(page);
     });
   }
 

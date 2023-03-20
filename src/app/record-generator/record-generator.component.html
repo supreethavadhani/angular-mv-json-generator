@@ -1,5 +1,5 @@
 <mat-card class="col-md-10"
-  style="margin:auto; margin-top: 2rem;padding:2rem; box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;">
+  style="margin:auto; margin-top: 2rem;padding:2rem; box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;border: 2px solid #673ab7">
 
   <h2 style="color:#673ab7"> Generate a Record JSON</h2>
   <form [formGroup]="recordForm">
@@ -31,11 +31,11 @@
           </mat-form-field>
 
           <mat-form-field appearance="fill">
-            <input matInput formControlName="dbColumnName" placeholder="Name of Table in Database">
+            <input matInput formControlName="dbColumnName" placeholder="DB Column Name">
           </mat-form-field>
 
           <mat-form-field appearance="fill">
-            <mat-label>Is the Field Required or Optional</mat-label>
+            <mat-label>Required or Optional</mat-label>
             <mat-select formControlName="fieldType">
               <mat-option *ngFor="let fieldType of fieldTypes" [value]=fieldType.name>
                 {{ fieldType.displayName }}
@@ -43,7 +43,7 @@
             </mat-select>
           </mat-form-field>
           <mat-form-field appearance="fill">
-            <mat-label>What is the DataType for this field</mat-label>
+            <mat-label> DataType</mat-label>
             <mat-select formControlName="dataType">
               <mat-option *ngFor="let dataType of dataTypes" [value]=dataType.name>
                 {{ dataType.displayName }}

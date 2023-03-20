@@ -1,17 +1,25 @@
-<!-- <mat-card class="col-md-11" style="padding:1rem;text-align: center;margin:1rem">
-  <h1>Welcome to Metadev Json Generator</h1>
+<mat-card class="col-md-10" style="margin:auto;margin-top: 2rem;text-align: center;padding:1rem;margin:auto;margin-top:2rem;border: 2px solid #673ab7">
+  <h1 style="color:#673ab7"> Welcome to Metadev JSON Generators</h1>
 </mat-card>
-<mat-card class="col-md-10" style="padding:1rem;text-align: center;margin:1rem"> -->
 
-  <div class="row">
-    Upload Forms:<input class="col-md-2" type="file" multiple (change)="onFileSelected($event)" placeholder="Where are your Template,Forms,Record and Pages folder located?"> 
-    Upload Records: <input class="col-md-2" type="file" multiple (change)="onFileSelected($event)" placeholder="Where are your Template,Forms,Record and Pages folder located?"> 
-  <button class="col-md-8" mat-raised-button color="primary" (click)="getFiles()">upload Files</button>
-</div>
-  <!-- <h2>
-    What do you want to generate today?
-  </h2>
-  <button class="col-md-3" mat-raised-button color="primary">Generate Record</button>
-</mat-card> -->
+<mat-card class="col-md-10" style="padding:1rem;margin:auto;margin-top:5rem;border: 2px solid #673ab7">
+  <h2 style="color:#673ab7"> File Upload</h2>
+  <hr>
+  <div class="col-md-12 row" style="margin:auto;margin-top: 1rem;">
+    Upload Forms:<input class="col-md-2" type="file" multiple (change)="onFileSelected($event)"
+      placeholder="Where are your Template,Forms,Record and Pages folder located?">
+    Upload Records: <input class="col-md-2" type="file" multiple (change)="onFileSelected($event)"
+      placeholder="Where are your Template,Forms,Record and Pages folder located?">
+    Upload Templates: <input class="col-md-2" type="file" multiple (change)="onFileSelected($event)"
+      placeholder="Where are your Template,Forms,Record and Pages folder located?">
+    Upload Page: <input class="col-md-2" type="file" multiple (change)="onFileSelected($event)"
+      placeholder="Where are your Template,Forms,Record and Pages folder located?">
+    <button style="margin:auto;margin-top: 2rem;" class="col-md-2" mat-raised-button color="primary"
+      (click)="getFiles()">Upload Files</button>
+  </div>
+
+</mat-card>
 <app-form-generator></app-form-generator>
-<!-- <app-record-generator></app-record-generator> -->
+<app-record-generator></app-record-generator>
+<app-template-generator></app-template-generator>
+<app-page-generator></app-page-generator>

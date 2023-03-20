@@ -1,0 +1,57 @@
+<mat-card class="col-md-10"
+  style="margin:auto; margin-top: 2rem;padding:2rem; box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;border: 2px solid #673ab7">
+
+  <h2 style="color:#673ab7"> Generate a Template JSON</h2>
+  <form [formGroup]="templateForm">
+    <mat-form-field class="example-form-field">
+        <mat-label for="first-name">Template Name: </mat-label>
+        <input matInput id="first-name" type="text" formControlName="templateName">
+      </mat-form-field>
+      <mat-form-field class="example-form-field">
+        <mat-label for="first-name">HTML Selector: </mat-label>
+        <input matInput id="first-name" type="text" formControlName="htmlSelector">
+      </mat-form-field>
+      <mat-form-field class="col-md-4"appearance="fill">
+        <mat-label>Do you want a table or a form</mat-label>
+        <mat-select formControlName="templateType">
+          <mat-option *ngFor="let type of templateTypes" [value]=type.name>
+            {{ type.displayName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-checkbox formControlName="enableRoutes">Do you want to enable routing for this template</mat-checkbox>
+      <button mat-raised-button color="primary" (click)="addButton()">Add Button</button>
+      <div formArrayName="buttons">
+        <div *ngFor="let buttonForm of buttons.controls; let i = index" style="margin:0.5rem;border: 2px solid #673ab7">
+          <div [formGroupName]="i">
+  
+            <mat-form-field appearance="fill">
+              <input matInput formControlName="name" placeholder="Field Name">
+            </mat-form-field>
+
+            <mat-form-field  class="col-md-3" appearance="fill">
+                <mat-label>What action do you want to perform?</mat-label>
+                <mat-select formControlName="action">
+                  <mat-option *ngFor="let action of actions" [value]=action.name>
+                    {{ action.displayName }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field class="col-md-2" appearance="fill">
+                <mat-label>What type of button are you using?</mat-label>
+                <mat-select formControlName="buttonType">
+                  <mat-option *ngFor="let type of buttonType" [value]=type.name>
+                    {{ type.displayName }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            <mat-checkbox formControlName="routeOnClick">route on click?</mat-checkbox>
+            <button style="text-align: center;margin-left: 1.5rem;" mat-raised-button color="warn" (click)="deleteButton(i)">Remove Button</button>
+          </div>
+        </div>
+      </div>
+  </form>
+  <button class="col-md-3" style="margin:auto" mat-raised-button color="primary" (click)="generateJsonFile()">Generate
+    Template JSON</button>
+
