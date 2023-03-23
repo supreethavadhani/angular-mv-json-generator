@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import exportFromJSON from 'export-from-json';
+import { basePath } from '../data/formData';
+import { DownloadService } from '../services/downloadService/download.service';
 
 @Component({
   selector: 'app-template-generator',
@@ -8,7 +9,7 @@ import exportFromJSON from 'export-from-json';
   styleUrls: ['./template-generator.component.scss']
 })
 export class TemplateGeneratorComponent {
-  constructor( private fb:FormBuilder){}
+  constructor( private fb:FormBuilder, private ds: DownloadService){}
 
   templateForm = new FormGroup({
     templateName: new FormControl('', [Validators.required, Validators.pattern(/^-\s/)]),
@@ -53,11 +54,6 @@ export class TemplateGeneratorComponent {
   generateJsonFile() {
     const data = this.templateForm.getRawValue();
     const fileName = this.templateForm.controls['templateName'].value + ".template"
-    const exportType = 'json';
-    exportFromJSON({
-      data,
-      fileName,
-      exportType
-    })
+    this.ds.downloadFile(fileName,data,basePath+"/template/")
   }
 }

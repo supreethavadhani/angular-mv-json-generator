@@ -42,8 +42,16 @@
         <input matInput id="first-name" type="text" formControlName="navMenuName">
       </mat-form-field>
 
-    <div formArrayName="buttons">
-      <div *ngFor="let buttonForm of buttons.controls; let i = index" style="margin:0.5rem;border: 2px solid #673ab7">
+      <mat-form-field class="example-form-field">
+        <mat-label for="first-name">Where to route on edit: </mat-label>
+        <input matInput id="first-name" type="text" formControlName="editRoute">
+      </mat-form-field>
+
+        <mat-label for="first-name">Is Save Page: </mat-label>
+        <mat-checkbox id="first-name" type="text" formControlName="isSavePage"></mat-checkbox>
+
+    <div formArrayName="routeTo">
+      <div *ngFor="let buttonForm of routeTo.controls; let i = index" style="margin:0.5rem;border: 2px solid #673ab7">
         <div [formGroupName]="i">
             <h2>{{buttonForm.value.name}}</h2>
             <mat-form-field class="example-form-field">

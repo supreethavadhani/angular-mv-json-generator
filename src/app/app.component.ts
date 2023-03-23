@@ -3,7 +3,8 @@ import { FormControl, Validators } from '@angular/forms';
 import { FileService } from './services/fileService/file-service.service';
 import { JsonParserService } from './services/jsonParserService/jsonParser.service';
 import { FORM_EXT, PAGE_EXT, RECORD_EXT, TEMPLATE_EXT } from './interfaces';
-import { recordNames } from './data/formData';
+import { basePath, basePathSetter, recordNames } from './data/formData';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -12,40 +13,25 @@ import { recordNames } from './data/formData';
 })
 export class AppComponent {
   title = 'mv-json-generator';
-  resourceLocation = new FormControl('',Validators.required);
-  formFileContent:any[] = []
-  recordFileContent:any = []
-  templateFileContent:any = []
-  pageFileContent:any = []
-  constructor(private jsonParserService : JsonParserService){}
+  pathName = new FormControl('',Validators.required);
+  constructor(private jsonParserService : JsonParserService, private http: HttpClient){}
   
-  onFileSelected(event:any): void {
-    const files: File[] = event.target.files;
-    for (const file of files) {
-      this.readFile(file);
-    }
-  }
-
-  readFile(file: File): void {
-    const reader = new FileReader();
-    reader.onload = () => {
-      if(file.name.endsWith(FORM_EXT))
-      this.formFileContent.push(reader.result)
-      if(file.name.endsWith(RECORD_EXT))
-      this.recordFileContent.push(reader.result)
-      if(file.name.endsWith(TEMPLATE_EXT))
-      this.templateFileContent.push(reader.result)
-      if(file.name.endsWith(PAGE_EXT))
-      this.templateFileContent.push(reader.result)
-    };
-    reader.readAsText(file);
-  }
 
   getFiles(){
-    this.jsonParserService.processFormData(this.formFileContent);
-    this.jsonParserService.processRecordData(this.recordFileContent);
-    this.jsonParserService.processTemplateData(this.templateFileContent)
-    this.jsonParserService.processPageData(this.pageFileContent);
+    let path = this.pathName.value;
+    if(path)
+    basePathSetter(path);
+    this.http.get<any>('http://localhost:3000/json-files?folderPath='+path).subscribe(
+      data => {
+        console.log(data)
+        this.jsonParserService.processFormData(data.form);
+        this.jsonParserService.processRecordData(data.record);
+        this.jsonParserService.processPageData(data.page);
+        this.jsonParserService.processTemplateData(data.template);
+    },
+    err=>{
+      console.log(err)
+    })  
   }
 
 }

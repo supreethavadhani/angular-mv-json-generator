@@ -9,6 +9,8 @@ import {
   Validators
 } from '@angular/forms';
 import exportFromJSON from 'export-from-json'
+import { basePath } from '../data/formData';
+import { DownloadService } from '../services/downloadService/download.service';
 
 @Component({
   selector: 'app-record-generator',
@@ -16,7 +18,7 @@ import exportFromJSON from 'export-from-json'
   styleUrls: ['./record-generator.component.scss']
 })
 export class RecordGeneratorComponent {
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private ds:DownloadService) {
 
   }
 
@@ -121,11 +123,6 @@ export class RecordGeneratorComponent {
   generateJsonFile() {
     const data = this.recordForm.getRawValue();
     const fileName = this.recordForm.controls['name'].value + ".rec"
-    const exportType = 'json';
-    exportFromJSON({
-      data,
-      fileName,
-      exportType
-    })
+    this.ds.downloadFile(fileName,data,basePath+"/rec/")
   }
 }

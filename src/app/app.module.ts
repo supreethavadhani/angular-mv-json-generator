@@ -16,7 +16,9 @@ import { RecordGeneratorComponent } from './record-generator/record-generator.co
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { TemplateGeneratorComponent } from './template-generator/template-generator.component';
-import { PageGeneratorComponent } from './page-generator/page-generator.component'
+import { PageGeneratorComponent } from './page-generator/page-generator.component';
+import { DownloadService } from './services/downloadService/download.service';
+
 
 @NgModule({
   declarations: [
@@ -38,9 +40,9 @@ import { PageGeneratorComponent } from './page-generator/page-generator.componen
     MatSelectModule,
     MatCheckboxModule,
     FormsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
   ],
-  providers: [FileService, JsonParserService],
+  providers: [FileService, JsonParserService, DownloadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

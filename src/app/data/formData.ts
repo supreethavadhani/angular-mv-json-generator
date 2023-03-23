@@ -13,3 +13,12 @@ export let pageObjects:PageObject[] = [];
 export let pageNames:string[] = [];
 
 export let templateTypes:string[] = ["table","form"]; 
+
+export let basePath = ""
+
+export function basePathSetter(path:string){
+    basePath = path
+}
+export function basePathGetter(path:string){
+    return basePath
+}

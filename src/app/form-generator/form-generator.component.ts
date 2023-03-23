@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { formNames, recordNames, recordObjects } from '../data/formData';
+import { basePath, formNames, recordNames, recordObjects } from '../data/formData';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable, map, startWith } from 'rxjs';
 import exportFromJSON from 'export-from-json';
+import { DownloadService } from '../services/downloadService/download.service';
 
 @Component({
   selector: 'app-form-generator',
@@ -15,7 +16,7 @@ export class FormGeneratorComponent implements OnInit{
   public records: string[] = [];
   public filteredOptions!: Observable<string[]> ;
 
-  constructor(public fb:FormBuilder){
+  constructor(public fb:FormBuilder, private ds:DownloadService){
 
   }
   ngOnInit(): void {
@@ -107,13 +108,9 @@ export class FormGeneratorComponent implements OnInit{
 
   generateJsonFile() {
     const data = this.formForm.getRawValue();
-    const fileName = this.formForm.controls['name'].value + ".frm"
-    const exportType = 'json';
-    exportFromJSON({
-      data,
-      fileName,
-      exportType
-    })
+    const fileName = this.formForm.controls['name'].value + ".frm";
+    this.ds.downloadFile(fileName,data,basePath+"/form/")
+
   }
 
   async valueChangeDetector($event?:any) {
