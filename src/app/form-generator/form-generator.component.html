@@ -23,6 +23,8 @@
       <mat-label> What operations do you need?</mat-label>
       <mat-checkbox (change)="operationChanged($event,'create')">Create</mat-checkbox>
       <mat-checkbox (change)="operationChanged($event,'filter')">Filter</mat-checkbox>
+      <mat-checkbox (change)="operationChanged($event,'get')">READ</mat-checkbox>
+      <mat-checkbox (change)="operationChanged($event,'update')">Update</mat-checkbox>
     </div>
     <mat-label>Do you want to serve guest request?</mat-label>
     <mat-checkbox formControlName="serveGuests"></mat-checkbox>

@@ -26,7 +26,8 @@ export class TemplateGeneratorComponent {
 
   actions = [
     {name:"Create",displayName:"Create Record"},
-    {name:"Navigate",displayName:"Navigate"}
+    {name:"Navigate",displayName:"Navigate"},
+    {name:"Update", displayName:"Update Record"}
   ]
 
   buttonType = [

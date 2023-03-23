@@ -11,7 +11,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>What template should this page follow?</mat-label>
-      <mat-select formControlName="componentForm" (selectionChange)="onOptionSelected($event)">
+      <mat-select formControlName="templateType" (selectionChange)="onOptionSelected($event)">
         <mat-option *ngFor="let templateName of templateNames" [value]=templateName>
           {{ templateName }}
         </mat-option>

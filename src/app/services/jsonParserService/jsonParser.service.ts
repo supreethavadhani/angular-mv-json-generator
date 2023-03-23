@@ -9,8 +9,8 @@ export class JsonParserService {
 
   constructor(private http: HttpClient) { }
   processFormData(forms:any[]) {
+    recordNames.length = 0;
     forms.forEach(form => {
-
       formNames.push(form.name);
       formObjects.push(form);
     });

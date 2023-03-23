@@ -16,8 +16,10 @@
 
     <div>
       <mat-label> What operations do you need?</mat-label>
-      <mat-checkbox (change)="operationChanged($event,'create')">create</mat-checkbox>
-      <mat-checkbox (change)="operationChanged($event,'filter')">filter</mat-checkbox>
+      <mat-checkbox (change)="operationChanged($event,'create')">CREATE</mat-checkbox>
+      <mat-checkbox (change)="operationChanged($event,'filter')">FILTER</mat-checkbox>
+      <mat-checkbox (change)="operationChanged($event,'get')">READ</mat-checkbox>
+      <mat-checkbox (change)="operationChanged($event,'update')">UPDATE</mat-checkbox>
     </div>
 
     <button mat-raised-button color="primary" (click)="addField()">Add Field</button>

@@ -39,6 +39,8 @@ export class FormGeneratorComponent implements OnInit{
   operations = this.fb.group({
     create: new FormControl("Create"),
     filter: new FormControl("Filter"),
+    get: new FormControl("Get"),
+    update: new FormControl("Update"),
     delete: false,
   })
 
