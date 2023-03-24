@@ -13,7 +13,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent {
   title = 'mv-json-generator';
-  pathName = new FormControl('',Validators.required);
+  pathName = new FormControl('',);
   constructor(private jsonParserService : JsonParserService, private http: HttpClient){}
   
 

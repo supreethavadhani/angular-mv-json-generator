@@ -23,10 +23,10 @@ export class RecordGeneratorComponent {
   }
 
   recordForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.pattern(/^-\s/)]),
-    nameInDb: new FormControl('', Validators.required),
-    operations: this.fb.array([], Validators.required),
-    fields: this.fb.array([], Validators.required)
+    name: new FormControl('', [ Validators.pattern(/^-\s/)]),
+    nameInDb: new FormControl('', ),
+    operations: this.fb.array([], ),
+    fields: this.fb.array([], )
   });
 
   operations = this.fb.group({
@@ -71,6 +71,22 @@ export class RecordGeneratorComponent {
       this.recordForm.controls['operations'].removeAt(this.recordForm.controls['operations'].value.findIndex(x => x == "Filter"))
       console.log(this.recordForm.getRawValue())
     }
+    if ($event.checked && y == 'get') {
+      this.recordForm.controls['operations'].push(this.operations.controls["get"])
+      console.log(this.recordForm.getRawValue())
+    }
+    if (!$event.checked && y == 'get') {
+      this.recordForm.controls['operations'].removeAt(this.recordForm.controls['operations'].value.findIndex(x => x == "get"))
+      console.log(this.recordForm.getRawValue())
+    }
+    if ($event.checked && y == 'update') {
+      this.recordForm.controls['operations'].push(this.operations.controls["update"])
+      console.log(this.recordForm.getRawValue())
+    }
+    if (!$event.checked && y == 'update') {
+      this.recordForm.controls['operations'].removeAt(this.recordForm.controls['operations'].value.findIndex(x => x == "update"))
+      console.log(this.recordForm.getRawValue())
+    }
   }
 
   get fields() {
@@ -79,11 +95,11 @@ export class RecordGeneratorComponent {
 
   public addField() {
     const fieldForm = this.fb.group({
-      name: ['', [Validators.required, Validators.pattern(/^-\s/)]],
-      dbColumnName: ['', Validators.required],
-      dataType: ['', Validators.required, Validators.pattern(/^-\s/)],
-      fieldType: ['', Validators.required],
-      listName:[''],
+      name: ['', [ Validators.pattern(/^-\s/)]],
+      dbColumnName: ['', ],
+      dataType: ['',  Validators.pattern(/^-\s/)],
+      fieldType: ['', ],
+      listName:[],
     }) as FormGroup;
     this.fields.push(fieldForm);
   }

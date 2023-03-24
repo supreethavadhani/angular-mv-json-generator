@@ -12,11 +12,11 @@ export class TemplateGeneratorComponent {
   constructor( private fb:FormBuilder, private ds: DownloadService){}
 
   templateForm = new FormGroup({
-    templateName: new FormControl('', [Validators.required, Validators.pattern(/^-\s/)]),
-    htmlSelector: new FormControl('', Validators.required),
-    templateType: new FormControl('', Validators.required),
-    enableRoutes: new FormControl('', [Validators.required]),
-    buttons: this.fb.array([], Validators.required),
+    templateName: new FormControl('', [ Validators.pattern(/^-\s/)]),
+    htmlSelector: new FormControl('', ),
+    templateType: new FormControl('', ),
+    enableRoutes: new FormControl('', []),
+    buttons: this.fb.array([], ),
   });
 
   templateTypes = [
@@ -41,10 +41,10 @@ export class TemplateGeneratorComponent {
 
   public addButton() {
     const buttonForm = this.fb.group({
-      name: ['', [Validators.required, Validators.pattern(/^-\s/)]],
-      action: ['', Validators.required],
-      buttonType: ['', Validators.required],
-      routeOnClick:['', Validators.required]
+      name: ['', [ Validators.pattern(/^-\s/)]],
+      action: ['', ],
+      buttonType: ['', ],
+      routeOnClick:['', ]
     }) as FormGroup;
     this.buttons.push(buttonForm);
   }

@@ -18,15 +18,15 @@ export class PageGeneratorComponent {
   }
 
   pageForm = new FormGroup({
-    pageName: new FormControl('', [Validators.required, Validators.pattern(/^-\s/)]),
-    componentForm: new FormControl('', Validators.required),
-    templateType: new FormControl('', Validators.required),
-    pageSelector: new FormControl('', Validators.required),
-    pageRoute: new FormControl('', [Validators.required]),
-    navMenuName:new FormControl('',[Validators.required]),
-    isSavePage:new FormControl('',[Validators.required]),
-    editRoute: new FormControl('',[Validators.required]),
-    routeTo: this.fb.array([], Validators.required),
+    pageName: new FormControl('', [ Validators.pattern(/^-\s/)]),
+    componentForm: new FormControl('', ),
+    templateType: new FormControl('', ),
+    pageSelector: new FormControl('', ),
+    pageRoute: new FormControl('', []),
+    navMenuName:new FormControl('',[]),
+    isSavePage:new FormControl('',[]),
+    editRoute: new FormControl('',[]),
+    routeTo: this.fb.array([], ),
   });
 
   onOptionSelected($event:any){
@@ -43,8 +43,8 @@ export class PageGeneratorComponent {
 
   public addButton(buttonName:string) {
     const buttonForm = this.fb.group({
-      name: ['', [Validators.required, Validators.pattern(/^-\s/)]],
-      route: ['', Validators.required],
+      name: ['', [ Validators.pattern(/^-\s/)]],
+      route: ['', ],
     }) as FormGroup;
     buttonForm.controls['name'].patchValue(buttonName);
     this.routeTo.push(buttonForm);

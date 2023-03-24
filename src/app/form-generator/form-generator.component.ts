@@ -29,11 +29,11 @@ export class FormGeneratorComponent implements OnInit{
   }
 
   formForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.pattern(/^-\s/)]),
-    recordName: new FormControl('', Validators.required),
-    serveGuests: new FormControl('', Validators.required),
-    operations: this.fb.array([], Validators.required),
-    controls: this.fb.array([], Validators.required)
+    name: new FormControl('', [ Validators.pattern(/^-\s/)]),
+    recordName: new FormControl('', ),
+    serveGuests: new FormControl('', ),
+    operations: this.fb.array([], ),
+    controls: this.fb.array([], )
   });
 
   operations = this.fb.group({
@@ -109,9 +109,9 @@ export class FormGeneratorComponent implements OnInit{
 
   public addField(fieldName?:string) {
     const controlForm = this.fb.group({
-      name: ['', [Validators.required, Validators.pattern(/^-\s/)]],
-      label: ['', Validators.required],
-      controlType: ['', Validators.required]
+      name: ['', [ Validators.pattern(/^-\s/)]],
+      label: ['', ],
+      controlType: ['', ]
     }) as FormGroup;
     if(fieldName) {
       controlForm.controls['name'].patchValue(fieldName);
