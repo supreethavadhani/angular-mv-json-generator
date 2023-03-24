@@ -16,6 +16,9 @@ export let templateTypes:string[] = ["table","form"];
 
 export let basePath = ""
 
+export let appDataTypes:string[] = [];
+export let valueLists: string[] = [];
+
 export function basePathSetter(path:string){
     basePath = path
 }

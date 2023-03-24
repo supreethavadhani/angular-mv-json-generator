@@ -28,6 +28,7 @@ export class AppComponent {
         this.jsonParserService.processRecordData(data.record);
         this.jsonParserService.processPageData(data.page);
         this.jsonParserService.processTemplateData(data.template);
+        this.jsonParserService.processApplicationData(data.application)
     },
     err=>{
       console.log(err)

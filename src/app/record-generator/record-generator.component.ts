@@ -9,7 +9,7 @@ import {
   Validators
 } from '@angular/forms';
 import exportFromJSON from 'export-from-json'
-import { basePath } from '../data/formData';
+import { appDataTypes, basePath, valueLists } from '../data/formData';
 import { DownloadService } from '../services/downloadService/download.service';
 
 @Component({
@@ -51,39 +51,8 @@ export class RecordGeneratorComponent {
     },
   ];
 
-  dataTypes = [{
-      name: "integer",
-      displayName: "Integer"
-    },
-    {
-      name: "decimal",
-      displayName: "Decimal"
-    },
-    {
-      name: "name",
-      displayName: "Name"
-    },
-    {
-      name: "bool",
-      displayName: "Boolean"
-    },
-    {
-      name: "text",
-      displayName: "Text"
-    },
-    {
-      name: "id",
-      displayName: "ID"
-    },
-    {
-      name: "email",
-      displayName: "Email"
-    },
-    {
-      name: "phone",
-      displayName: "Phone"
-    }
-  ]
+  dataTypes = appDataTypes
+  valueList = valueLists
 
   public operationChanged($event: any, y: string) {
     if ($event.checked && y == 'create') {
@@ -113,7 +82,8 @@ export class RecordGeneratorComponent {
       name: ['', [Validators.required, Validators.pattern(/^-\s/)]],
       dbColumnName: ['', Validators.required],
       dataType: ['', Validators.required, Validators.pattern(/^-\s/)],
-      fieldType: ['', Validators.required]
+      fieldType: ['', Validators.required],
+      listName:[''],
     }) as FormGroup;
     this.fields.push(fieldForm);
   }

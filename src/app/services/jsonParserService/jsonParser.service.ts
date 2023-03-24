@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { formNames, formObjects, pageNames, pageObjects, recordNames, recordObjects, templateNames, templateObjects } from '../../data/formData';
+import { appDataTypes, formNames, formObjects, pageNames, pageObjects, recordNames, recordObjects, templateNames, templateObjects, valueLists } from '../../data/formData';
 import { FormObject, PageObject, RecordObject, TemplateObject  } from '../../interfaces';
 
 
@@ -38,6 +38,25 @@ export class JsonParserService {
       pageNames.push(page.pageName);
       pageObjects.push(page);
     });
+  }
+
+  async processApplicationData(application:any){
+    appDataTypes.length = 0
+    valueLists.length = 0
+    let dataTypes = application[0].dataTypes;
+    let keys = Object.keys(dataTypes)
+    keys.forEach(x=>{
+      Object.keys(dataTypes[x]).forEach(y=>{
+        appDataTypes.push(y)
+      })
+    })
+    
+    let valueList = application[0].valueLists
+    valueList = Object.keys(valueList)
+    valueList.forEach((element:string) => {
+      valueLists.push(element)
+    });
+    console.log(valueLists)
   }
 
   getJsonObject(f:string){

@@ -47,8 +47,16 @@
           <mat-form-field appearance="fill">
             <mat-label> DataType</mat-label>
             <mat-select formControlName="dataType">
-              <mat-option *ngFor="let dataType of dataTypes" [value]=dataType.name>
-                {{ dataType.displayName }}
+              <mat-option *ngFor="let dataType of dataTypes" [value]=dataType>
+                {{ dataType }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label> List Name</mat-label>
+            <mat-select formControlName="listName">
+              <mat-option *ngFor="let value of valueList" [value]=value>
+                {{ value }}
               </mat-option>
             </mat-select>
           </mat-form-field>

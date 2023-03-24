@@ -54,7 +54,7 @@ export class FormGeneratorComponent implements OnInit{
     displayName: 'Text Box'
   },
   {
-    name: 'dropdown',
+    name: 'dropDown',
     displayName: 'Dropdown'
   },
   {
@@ -83,6 +83,22 @@ export class FormGeneratorComponent implements OnInit{
     }
     if (!$event.checked && y == 'filter') {
       this.formForm.controls['operations'].removeAt(this.formForm.controls['operations'].value.findIndex(x => x == "Filter"))
+      console.log(this.formForm.getRawValue())
+    }
+    if ($event.checked && y == 'get') {
+      this.formForm.controls['operations'].push(this.operations.controls["get"])
+      console.log(this.formForm.getRawValue())
+    }
+    if (!$event.checked && y == 'get') {
+      this.formForm.controls['operations'].removeAt(this.formForm.controls['operations'].value.findIndex(x => x == "get"))
+      console.log(this.formForm.getRawValue())
+    }
+    if ($event.checked && y == 'update') {
+      this.formForm.controls['operations'].push(this.operations.controls["update"])
+      console.log(this.formForm.getRawValue())
+    }
+    if (!$event.checked && y == 'update') {
+      this.formForm.controls['operations'].removeAt(this.formForm.controls['operations'].value.findIndex(x => x == "update"))
       console.log(this.formForm.getRawValue())
     }
   }
