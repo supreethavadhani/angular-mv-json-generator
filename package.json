@@ -26,6 +26,7 @@
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.3",
     "export-from-json": "^1.7.2",
+    "ngx-highlightjs": "^8.0.0",
     "popper.js": "^1.12.9",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

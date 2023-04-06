@@ -18,7 +18,12 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { TemplateGeneratorComponent } from './template-generator/template-generator.component';
 import { PageGeneratorComponent } from './page-generator/page-generator.component';
 import { DownloadService } from './services/downloadService/download.service';
-
+import {
+  HighlightModule,
+  HIGHLIGHT_OPTIONS,
+  HighlightOptions,
+} from 'ngx-highlightjs';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -41,8 +46,22 @@ import { DownloadService } from './services/downloadService/download.service';
     MatCheckboxModule,
     FormsModule,
     MatAutocompleteModule,
+    HighlightModule,
+    MatProgressSpinnerModule
   ],
-  providers: [FileService, JsonParserService, DownloadService],
+  providers: [FileService, JsonParserService, DownloadService,
+    {
+      provide: HIGHLIGHT_OPTIONS,
+      useValue: {
+        coreLibraryLoader: () => import('highlight.js/lib/core'),
+        languages: {
+          typescript: () => import('highlight.js/lib/languages/typescript'),
+          css: () => import('highlight.js/lib/languages/css'),
+          xml: () => import('highlight.js/lib/languages/json')
+        },
+      }
+    }
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

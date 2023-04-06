@@ -1,4 +1,5 @@
-<mat-card class="col-md-10" style="margin:auto;margin-top: 2rem;text-align: center;padding:1rem;margin:auto;margin-top:2rem;border: 2px solid #673ab7">
+<mat-card class="col-md-10"
+  style="margin:auto;margin-top: 2rem;text-align: center;padding:1rem;margin:auto;margin-top:2rem;border: 2px solid #673ab7">
   <h1 style="color:#673ab7"> Welcome to Metadev JSON Generators</h1>
 </mat-card>
 
@@ -10,7 +11,35 @@
     <input matInput id="first-name" type="text" [formControl]="pathName">
   </mat-form-field>
   <button style="margin:auto;margin-top: 2rem;" class="col-md-2" mat-raised-button color="primary"
-  (click)="getFiles()">Upload Files</button>
+    (click)="getFiles()">Upload Files</button>
+</mat-card>
+
+<mat-card class="col-md-10" style="padding:1rem;margin:auto;margin-top:5rem;border: 2px solid #673ab7">
+  <h2 style="color:#673ab7"> Smart - Form Generator</h2>
+  <hr>
+  <mat-form-field class="example-form-field">
+    <mat-label for="first-name">What Form do you want to generate. Say as little as "student form" or as much as "I want
+      to generate student form with 2 fields student id and student name and student age"</mat-label>
+    <input matInput id="first-name" type="text" [formControl]="formName">
+  </mat-form-field>
+  <button style="margin:auto;margin-top: 2rem;" class="col-md-2" mat-raised-button color="primary"
+    (click)="getSmartForm()">Generate Smart Form</button>
+  <div class="row col-md-12" *ngIf="showCode" style="margin:3rem">
+    <div class="col-md-5">
+      <span>The form json file</span>
+      <pre style="background-color: #dcdde1;">
+        <code style="background-color: #dcdde1;" [highlight]="formCode | json" [languages]="['typescript']" (highlighted)="onHighlight($event)" [lineNumbers]="true"></code>
+    </pre>
+    </div>
+    <div class="col-md-5">
+      <span>The record json file</span>
+      <pre style="background-color: #dcdde1;">
+        <code style="background-color: #dcdde1;" [highlight]="recordCode | json" [languages]="['typescript']" (highlighted)="onHighlight($event)" [lineNumbers]="true"></code>
+    </pre>
+    </div>
+  </div>
+  <mat-spinner style="margin:auto;margin-top:2rem" *ngIf="showSpinner"></mat-spinner>
+  <button  style="margin:auto;margin-top: 2rem;" *ngIf="showCode" class="col-md-4" mat-raised-button color="primary" (click)="downloadForm();downloadRecord()"> Download Form and Record</button>
 </mat-card>
 <app-form-generator></app-form-generator>
 <app-record-generator></app-record-generator>
